@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { decode } from "html-entities";
 import axios from "axios";
 import { nanoid } from "nanoid";
+import { clsx } from "clsx";
 
 function App() {
   const [questionsObject, setQuestionsObject] = useState([]);
@@ -90,17 +91,15 @@ function App() {
                       const isWrong =
                         clickedAnswer[questions.id] !== questions.correctAnswer;
 
+                      const className = clsx({
+                        correct: isSelected && isSubmitted && isCorrect,
+                        wrong: isSelected && isSubmitted && isWrong,
+                        selected: isSelected,
+                      });
+
                       return (
                         <button
-                          className={
-                            isSelected && isSubmitted && isCorrect
-                              ? "correct"
-                              : isSelected && isSubmitted && isWrong
-                                ? "wrong"
-                                : isSelected
-                                  ? "selected"
-                                  : ""
-                          }
+                          className={className}
                           key={index}
                           onClick={() => handleAnswers(questions.id, answer)}
                         >
