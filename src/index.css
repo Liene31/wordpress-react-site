@@ -12,13 +12,30 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.quiz-card {
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
+  background: #262626;
+  padding: 2.5rem 3rem;
+  border-radius: 0.75rem;
+  width: 600px;
+  max-width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+header h1 {
+  letter-spacing: 1px;
 }
 
 header h2 {
@@ -43,6 +60,19 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  width: 100%;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.question:last-child {
+  border-bottom: none;
+}
+
+.question h3 {
+  font-size: 1.05rem;
+  line-height: 1.4;
 }
 
 .answers {
@@ -52,17 +82,18 @@ main {
 }
 
 .answers button {
-  padding: 0.3rem 1.3rem;
+  padding: 0.5rem 1.4rem;
   border-radius: 0.3rem;
   border: none;
   background-color: #cbcbcb;
   color: #1b1b1b;
   font-weight: bold;
+  font-size: 0.7rem;
   cursor: pointer;
 }
 
 .answers button:hover {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .answers .selected {
@@ -77,16 +108,22 @@ main {
   background-color: #f8bcbc;
 }
 
-.submit-btn {
-  padding: 0.4rem 1.1rem;
-  border-radius: 0.3rem;
+.btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.8rem;
+  font-weight: bold;
+  background-color: #cbcbcb;
+  color: #1b1b1b;
+  border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  box-shadow:
-    rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.submit-btn:hover {
+.btn:hover {
   opacity: 0.7;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }

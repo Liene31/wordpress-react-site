@@ -70,63 +70,68 @@ function App() {
 
   return (
     <div className="container">
-      <header>
-        <h1>Books' Quiz</h1>
-        <h2>Are you a bookworm ?</h2>
-      </header>
+      <div className="quiz-card">
+        <header>
+          <h1>Books' Quiz</h1>
+          <h2>Are you a bookworm ?</h2>
+        </header>
 
-      <main>
-        <div className="questions-wrapper">
-          {questionsObject.map((questions, index) => {
-            return (
-              <div key={index} className="question">
-                <h3>{questions.quizQuestion}</h3>
+        <main>
+          <div className="questions-wrapper">
+            {questionsObject.map((questions, index) => {
+              return (
+                <div key={index} className="question">
+                  <h3>{questions.quizQuestion}</h3>
 
-                {
-                  <div className="answers">
-                    {questions.shuffledAnswers.map((answer, index) => {
-                      const isSelected = clickedAnswer[questions.id] === answer;
-                      const isCorrect =
-                        clickedAnswer[questions.id] === questions.correctAnswer;
-                      const isWrong =
-                        clickedAnswer[questions.id] !== questions.correctAnswer;
+                  {
+                    <div className="answers">
+                      {questions.shuffledAnswers.map((answer, index) => {
+                        const isSelected =
+                          clickedAnswer[questions.id] === answer;
+                        const isCorrect =
+                          clickedAnswer[questions.id] ===
+                          questions.correctAnswer;
+                        const isWrong =
+                          clickedAnswer[questions.id] !==
+                          questions.correctAnswer;
 
-                      const className = clsx({
-                        correct: isSelected && isSubmitted && isCorrect,
-                        wrong: isSelected && isSubmitted && isWrong,
-                        selected: isSelected,
-                      });
+                        const className = clsx({
+                          correct: isSelected && isSubmitted && isCorrect,
+                          wrong: isSelected && isSubmitted && isWrong,
+                          selected: isSelected,
+                        });
 
-                      return (
-                        <button
-                          className={className}
-                          key={index}
-                          onClick={() => handleAnswers(questions.id, answer)}
-                        >
-                          {decode(answer)}
-                        </button>
-                      );
-                    })}
-                  </div>
-                }
-              </div>
-            );
-          })}
-        </div>
-        {isSubmitted ? (
-          <button onClick={newGameBtn} className="submit-btn">
-            New Game
-          </button>
-        ) : (
-          <button
-            disabled={Object.keys(clickedAnswer).length !== 5}
-            onClick={handleSubmit}
-            className="submit-btn"
-          >
-            Submit
-          </button>
-        )}
-      </main>
+                        return (
+                          <button
+                            className={className}
+                            key={index}
+                            onClick={() => handleAnswers(questions.id, answer)}
+                          >
+                            {decode(answer)}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  }
+                </div>
+              );
+            })}
+          </div>
+          {isSubmitted ? (
+            <button onClick={newGameBtn} className="btn">
+              New Game
+            </button>
+          ) : (
+            <button
+              disabled={Object.keys(clickedAnswer).length !== 5}
+              onClick={handleSubmit}
+              className="btn"
+            >
+              Submit
+            </button>
+          )}
+        </main>
+      </div>
     </div>
   );
 }
