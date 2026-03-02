@@ -96,6 +96,10 @@ main {
   opacity: 0.9;
 }
 
+.answers button:disabled {
+  cursor: not-allowed;
+}
+
 .answers .selected {
   background-color: #d6dbf5;
 }

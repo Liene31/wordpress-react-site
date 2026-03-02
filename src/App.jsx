@@ -86,23 +86,20 @@ function App() {
                   {
                     <div className="answers">
                       {questions.shuffledAnswers.map((answer, index) => {
+                        console.log(answer);
                         const isSelected =
                           clickedAnswer[questions.id] === answer;
-                        const isCorrect =
-                          clickedAnswer[questions.id] ===
-                          questions.correctAnswer;
-                        const isWrong =
-                          clickedAnswer[questions.id] !==
-                          questions.correctAnswer;
+                        const isCorrect = answer === questions.correctAnswer;
 
                         const className = clsx({
-                          correct: isSelected && isSubmitted && isCorrect,
-                          wrong: isSelected && isSubmitted && isWrong,
-                          selected: isSelected,
+                          selected: isSelected && !isSubmitted,
+                          correct: isSubmitted && isCorrect,
+                          wrong: isSubmitted && isSelected && !isCorrect,
                         });
 
                         return (
                           <button
+                            disabled={isSubmitted}
                             className={className}
                             key={index}
                             onClick={() => handleAnswers(questions.id, answer)}
